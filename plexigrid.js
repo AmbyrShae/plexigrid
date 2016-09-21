@@ -1,30 +1,63 @@
-// come up with javascript to repeat box
+$( document ).ready(function() {
 
-var btnPress = "mark";
+  var btnPress = "mark";
 
-tutorial();
+  tutorial();
 
-// square clicked
-function clickedBox(box) {
-  // console.log(box);
+  // click events
+  $(".box").click(clickedBox);
+  $("button").click(changeColor);
 
-  if(btnPress == "mark"){
-    $(box).toggleClass("red");
-    $(box).removeClass("grey");
+  // square clicked
+  function clickedBox(box) {
+
+    if(btnPress == "mark"){
+      $(box.target).toggleClass("red");
+      $(box.target).removeClass("grey");
+    }
+
+    if(btnPress == "block"){
+      $(box.target).toggleClass("grey");
+      $(box.target).removeClass("red");
+    }
+
+    gridComplete();
   }
 
-  if(btnPress == "block"){
-    $(box).toggleClass("grey");
-    $(box).removeClass("red");
+  function changeColor(btn) {
+    btnPress = btn.target.innerHTML;
   }
-}
 
-function changeColor(btn) {
-  btnPress = btn.innerHTML;
-}
+  function tutorial() {
+    var selectedBoxes = [11, 15, 33, 41, 45, 51, 52, 53, 54, 55],
+        markedBox;
 
-function tutorial() {
-  var selectedBoxes = [11, 15, 33, 41, 45, 51, 52, 53, 54, 55];
-}
+    for(var i = 0; i < selectedBoxes.length; i++) {
+      markedBox = document.getElementById(selectedBoxes[i]);
+      markedBox.setAttribute("data-marked", "true");
+    }
 
-// console.log(box.getAttribute("data-marked"));
+  }
+
+  function gridComplete() {
+    var markedBoxes = document.querySelectorAll('[data-marked="true"]'),
+        unmarkedBoxes = document.querySelectorAll('[data-marked="false"]'),
+        success,
+        box,
+        boxMarked,
+        boxClass;
+
+    success = Array.prototype.every.call(markedBoxes, function(el) {
+      return (el.className.includes("red") == true);
+    });
+    // success = [markedBoxes[0], markedBoxes[1]].every(checkClass);
+
+    console.log(success);
+  }
+
+  function checkClass(box) {
+    console.log(box);
+    return true;
+  }
+
+});
