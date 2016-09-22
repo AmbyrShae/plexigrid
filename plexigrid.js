@@ -3,6 +3,7 @@ $( document ).ready(function() {
   var btnPress = "mark",
       funcArray = [],
       selectedBoxes,
+      hintBoxes,
       markedBox,
       markedBoxes,
       markedPass,
@@ -53,6 +54,23 @@ $( document ).ready(function() {
       markedBox.setAttribute("data-marked", "true");
     }
 
+    document.querySelector("#rh13>p").innerHTML = "1";
+    document.querySelector("#rh12>p").innerHTML = "1";
+    document.querySelector("#rh23>p").innerHTML = "0";
+    document.querySelector("#rh33>p").innerHTML = "1";
+    document.querySelector("#rh43>p").innerHTML = "1";
+    document.querySelector("#rh42>p").innerHTML = "1";
+    document.querySelector("#rh53>p").innerHTML = "5";
+    document.querySelector("#ch11>p").innerHTML = "1";
+    document.querySelector("#ch21>p").innerHTML = "2";
+    document.querySelector("#ch12>p").innerHTML = "1";
+    document.querySelector("#ch13>p").innerHTML = "1";
+    document.querySelector("#ch23>p").innerHTML = "1";
+    document.querySelector("#ch14>p").innerHTML = "1";
+    document.querySelector("#ch15>p").innerHTML = "1";
+    document.querySelector("#ch15>p").innerHTML = "1";
+    document.querySelector("#ch25>p").innerHTML = "2";
+
   }
 
 // initialize tutorial
@@ -67,6 +85,25 @@ $( document ).ready(function() {
       markedBox.setAttribute("data-marked", "true");
     }
 
+    document.querySelector("#rh13>p").innerHTML = "2";
+    document.querySelector("#rh12>p").innerHTML = "2";
+    document.querySelector("#rh23>p").innerHTML = "1";
+    document.querySelector("#rh22>p").innerHTML = "1";
+    document.querySelector("#rh33>p").innerHTML = "3";
+    document.querySelector("#rh43>p").innerHTML = "1";
+    document.querySelector("#rh42>p").innerHTML = "1";
+    document.querySelector("#rh53>p").innerHTML = "2";
+    document.querySelector("#rh52>p").innerHTML = "2";
+    document.querySelector("#ch11>p").innerHTML = "2";
+    document.querySelector("#ch21>p").innerHTML = "1";
+    document.querySelector("#ch12>p").innerHTML = "1";
+    document.querySelector("#ch22>p").innerHTML = "3";
+    document.querySelector("#ch13>p").innerHTML = "1";
+    document.querySelector("#ch14>p").innerHTML = "3";
+    document.querySelector("#ch24>p").innerHTML = "1";
+    document.querySelector("#ch15>p").innerHTML = "1";
+    document.querySelector("#ch25>p").innerHTML = "2";
+
   }
 
 // initialize tutorial
@@ -80,6 +117,21 @@ $( document ).ready(function() {
       markedBox = document.getElementById(selectedBoxes[i]);
       markedBox.setAttribute("data-marked", "true");
     }
+
+    document.querySelector("#rh13>p").innerHTML = "2";
+    document.querySelector("#rh23>p").innerHTML = "3";
+    document.querySelector("#rh33>p").innerHTML = "0";
+    document.querySelector("#rh43>p").innerHTML = "5";
+    document.querySelector("#rh53>p").innerHTML = "1";
+    document.querySelector("#ch11>p").innerHTML = "1";
+    document.querySelector("#ch12>p").innerHTML = "1";
+    document.querySelector("#ch22>p").innerHTML = "1";
+    document.querySelector("#ch13>p").innerHTML = "1";
+    document.querySelector("#ch23>p").innerHTML = "2";
+    document.querySelector("#ch14>p").innerHTML = "2";
+    document.querySelector("#ch24>p").innerHTML = "1";
+    document.querySelector("#ch15>p").innerHTML = "1";
+    document.querySelector("#ch25>p").innerHTML = "1";
 
   }
 // checks to see that puzzle is complete
@@ -115,9 +167,15 @@ $( document ).ready(function() {
   function clearGrid() {
 
     selectedBoxes = document.querySelectorAll(".box");
+    hintBoxes = document.querySelectorAll("p");
+
     Array.prototype.forEach.call(selectedBoxes, function(el) {
       $(el).removeClass("red grey");
       el.setAttribute("data-marked", "false");
+    });
+
+    Array.prototype.forEach.call(hintBoxes, function(el) {
+      el.innerHTML = "";
     });
 
     document.querySelector(".level>span").innerHTML = "";
