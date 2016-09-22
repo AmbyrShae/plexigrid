@@ -1,28 +1,28 @@
 .title {
-  font-size: 68px;
+  font-size: 52px;
   letter-spacing: 20px;
   width: 100%;
   text-align: center;
   font-family: arial;
   padding: 10px;
-  margin: 20px 0 20px 0;
+  margin-top: 20px;
 }
 
 .level {
-  font-size: 38px;
+  font-size: 28px;
   letter-spacing: 16px;
   width: 100%;
   text-align: center;
   font-family: arial;
   padding: 10px;
-  margin: 20px 0 0 0;
 }
 
 .main {
-  margin-top: 24px;
+  margin: 24px 0 24px 0;
   width: 100%;
   display: flex;
   justify-content: space-around;
+  align-items: flex-end;
 }
 
 .grid {
@@ -38,6 +38,7 @@
   flex-wrap: wrap;
   align-items: flex-start;
   align-content: flex-start;
+  align-self: center;
 }
 
 .box {
@@ -73,13 +74,6 @@
 }
 
 .complete {
-  font-size: 68px;
-  color: #00cd00;
-  letter-spacing: 20px;
-  width: 100%;
-  text-align: center;
-  font-family: arial;
-  padding: 10px;
-  margin: 20px 0 20px 0;
-  visibility: hidden;
+  background-color: #66E18A !important;
+  color: #fff;
 }

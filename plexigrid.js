@@ -100,12 +100,12 @@ $( document ).ready(function() {
 
     if(markedPass && unmarkedPass) {
       success = true;
-      document.querySelector(".complete").style.visibility="visible";
+      $(".levelBtn").addClass("complete");
       document.querySelector(".levelBtn").disabled= false;
     }
 
     if(success == false) {
-      document.querySelector(".complete").style.visibility="hidden";
+      $(".levelBtn").removeClass("complete");
       document.querySelector(".levelBtn").disabled= true;
     }
 
@@ -121,7 +121,7 @@ $( document ).ready(function() {
     });
 
     document.querySelector(".level>span").innerHTML = "";
-    document.querySelector(".complete").style.visibility="hidden";
+    $(".levelBtn").removeClass("complete");
     document.querySelector(".levelBtn").disabled= true;
 
     if(funcArray.length > 0){
