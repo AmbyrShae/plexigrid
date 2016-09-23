@@ -187,6 +187,7 @@ $( document ).ready(function() {
     }
     else{
       document.querySelector(".level>span").innerHTML = "end of game";
+      document.querySelector(".level>span").style.color = "#e50000";
     }
 
   }
