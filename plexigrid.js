@@ -2,6 +2,8 @@ $( document ).ready(function() {
 
   var btnPress = "mark",
       funcArray = [],
+      rules = [],
+      ruleSpan = document.querySelector(".rules>div"),
       selectedBoxes,
       hintBoxes,
       markedBox,
@@ -11,13 +13,16 @@ $( document ).ready(function() {
       unmarkedPass,
       success;
 
+  setRules();
   tutorial();
+
   funcArray.push(levelOne, levelTwo);
 
   // click events
   $(".box").click(clickedBox);
   $(".colorBtn").click(changeColor);
   $(".levelBtn").click(clearGrid);
+  $(".rules>button").click(nextStep);
 
   // square clicked
   function clickedBox(box) {
@@ -42,6 +47,31 @@ $( document ).ready(function() {
 
   }
 
+  function nextStep() {
+    if(rules.length > 0){
+      ruleSpan.innerHTML = rules.shift();
+    }
+    if(rules.length == 0) {
+      document.querySelector(".rules>button").style.visibility = "hidden";
+    }
+  }
+
+  function setRules() {
+
+    rules.push("A plexiunit is made up of one or more plexiblocks.");
+    rules.push("You can \"block\" or \"mark\" a plexiblock by clicking it. Use the buttons below to designate mark or block action. Click a marked/blocked plexiblock again to remove mark/block.");
+    rules.push("GO ON, click a plexiblock!");
+    rules.push("The amount of numbers next to the rows and columns are hints to how many plexiunits are in the row/column. The actual numbers represent how many plexiblocks make up the plexiunit.");
+    rules.push("Look at row-2, it says \"0\". This means there are NO plexiunits in this row. Go ahead and block the entire row.");
+    rules.push("Now look at row-5, it says \"5\". This means there is ONE plexiunit made up of FIVE plexiblocks. Mark all 5 plexiblocks.");
+    rules.push("The row hints are read from left-to-right and the column hints are read top-to-bottom. Plexiunits are laid out in the same format.");
+    rules.push("Look at the 1st column, it says \"1\" & \"2\". This means there are TWO plexiunits. One is made up of ONE plexiblock and the other is made up of TWO plexiblocks.");
+    rules.push("In the last step, you marked row-5 entirely. Because of that, we can now see where the 2-plexiunit is. Mark the plexiblock in row-4, column-1 to complete the plexiunit.");
+    rules.push("Plexiunits cannot touch other plexiunits. That is why blocking is useful. Block row-3, column-1. Now you can see where the 1-plexiunit is located in column-1.")
+    rules.push("Finish the puzzle on your own. When you have successfully marked all plexiunits, the \"next level\" button will turn green. Click on it to proceed. :-)");
+
+  }
+
 // initialize tutorial
   function tutorial() {
 
@@ -53,6 +83,8 @@ $( document ).ready(function() {
       markedBox = document.getElementById(selectedBoxes[i]);
       markedBox.setAttribute("data-marked", "true");
     }
+
+    document.querySelector(".rules").style.visibility = "visible";
 
     document.querySelector("#rh13>p").innerHTML = "1";
     document.querySelector("#rh12>p").innerHTML = "1";
@@ -178,6 +210,7 @@ $( document ).ready(function() {
       el.innerHTML = "";
     });
 
+    document.querySelector(".rules").style.visibility = "hidden";
     document.querySelector(".level>span").innerHTML = "";
     $(".levelBtn").removeClass("complete");
     document.querySelector(".levelBtn").disabled= true;

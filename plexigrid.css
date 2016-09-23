@@ -1,9 +1,12 @@
+body {
+  font-family: arial;
+}
+
 .title {
   font-size: 52px;
   letter-spacing: 20px;
   width: 100%;
   text-align: center;
-  font-family: arial;
   padding: 10px;
   margin-top: 20px;
 }
@@ -31,7 +34,6 @@
   min-height: 100px;
   max-height: 100px;
   border: thin solid #fff;
-  font-family: arial;
   font-size: 28px;
   text-align: center;
 }
@@ -52,7 +54,7 @@
   min-height: 510px;
   max-height: 510px;
   border: medium solid #000;
-  margin: 5px 100px 5px 0;
+  margin: 5px 0;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -68,10 +70,36 @@
   border: thin solid #000;
 }
 
-.btn {
+.misc {
   display: flex;
   flex-direction: column;
-  max-width: 250px;
+  align-items: center;
+  width: 500px;
+}
+
+.rules {
+  font-size: 18px;
+  width: 300px;
+  height: 240px;
+  line-height: 28px;
+  text-align: justify;
+  visibility: hidden;
+}
+
+.rules > div {
+  height: 180px;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+}
+
+.rules > button {
+  border: 3px solid #000;
+  font-size: 20px;
+  background-color: #fff;
+  width: 72px;
+  height: 34px;
+  margin: 5px;
+  float: right;
 }
 
 .level {
@@ -79,22 +107,22 @@
   letter-spacing: 16px;
   width: 100%;
   text-align: center;
-  font-family: arial;
   padding: 10px;
   margin-bottom: 25px;
-  align-self: center;
+}
+
+.btn {
+  max-width: 180px;
 }
 
 .btn > button {
   border: 3px solid #000;
   font-size: 20px;
-  font-family: arial;
   background-color: #fff;
   width: 170px;
   height: 55px;
   letter-spacing: 5px;
   margin: 5px;
-  align-self: center;
 }
 
 .red {
