@@ -51,7 +51,7 @@ $(document).ready(function() {
         rules.push("The row hints are read from left-to-right and the column hints are read top-to-bottom. Plexiunits are laid out in the same format.");
         rules.push("Look at the 1st column, it says \"1\" & \"2\". This means there are TWO plexiunits. One is made up of ONE plexiblock and the other is made up of TWO plexiblocks.");
         rules.push("In the last step, you marked row-5 entirely. Because of that, we can now see where the 2-plexiunit is. Mark the plexiblock in row-4, column-1 to complete the plexiunit.");
-        rules.push("Plexiunits cannot touch other plexiunits. That is why blocking is useful. Block row-3, column-1. Now you can see where the 1-plexiunit is located in column-1.")
+        rules.push("Plexiunits cannot touch other plexiunits within the same row/column. That is why blocking is useful. Block row-3, column-1. Now you can see where the 1-plexiunit is located in column-1.")
         rules.push("Finish the puzzle on your own. When you have successfully marked all plexiunits, the \"next level\" button will turn green. Click on it to proceed. :-)");
 
     }
