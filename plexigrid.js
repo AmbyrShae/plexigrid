@@ -10,6 +10,7 @@ $(document).ready(function() {
         funcArray = [], // an array of function calls to proceed to next level
         rules = [], // an array of strings of rules
         ruleSpan = document.querySelector(".rules>div"),
+        counter = -1,
         selectedBoxes,
         hintBoxes,
         markedBox,
@@ -22,7 +23,7 @@ $(document).ready(function() {
     // both functions set up the first page of the game
     setRules();
     tutorial();
-    
+
     /**
      * Push the function calls unto funcArray.
      * This will call the next levels sequentially
@@ -43,8 +44,7 @@ $(document).ready(function() {
     function setRules() {
 
         rules.push("A plexiunit is made up of one or more plexiblocks.");
-        rules.push("You can \"block\" or \"mark\" a plexiblock by clicking it. Use the buttons below to designate mark or block action. Click a marked/blocked plexiblock again to remove mark/block.");
-        rules.push("GO ON, click a plexiblock!");
+        rules.push("You can \"block\" (grey) or \"mark\" (red) a plexiblock by clicking it. Use the buttons below to designate mark or block action. Click a marked/blocked plexiblock again to remove mark/block.");
         rules.push("The amount of numbers next to the rows and columns are hints to how many plexiunits are in the row/column. The actual numbers represent how many plexiblocks make up the plexiunit.");
         rules.push("Look at row-2, it says \"0\". This means there are NO plexiunits in this row. Go ahead and block the entire row.");
         rules.push("Now look at row-5, it says \"5\". This means there is ONE plexiunit made up of FIVE plexiblocks. Mark all 5 plexiblocks.");
@@ -95,20 +95,35 @@ $(document).ready(function() {
      * display it in the rules div. Once all
      * rules have been displayed, hide next button.
      */
-    function nextStep() {
+    function nextStep(btn) {
 
-        if (rules.length > 0) {
-            ruleSpan.innerHTML = rules.shift();
+        if (btn.target.className == "next") {
+            counter++;
         }
 
-        if (rules.length == 0) {
-            document.querySelector(".rules>button").style.visibility = "hidden";
+        if (btn.target.className == "previous") {
+            counter--;
         }
+
+        if (counter < 1) {
+            document.querySelector(".previous").style.visibility = "hidden";
+        }
+        else {
+            document.querySelector(".previous").style.visibility = "visible";
+        }
+
+        if (counter > 8 ) {
+            document.querySelector(".next").style.visibility = "hidden";
+        }
+        else {
+            document.querySelector(".next").style.visibility = "visible";
+        }
+
+        ruleSpan.innerHTML = rules[counter];
 
     }
 
-
-    // initialize tutorial
+    // This sets up the tutorial level
     function tutorial() {
 
         document.querySelector(".level>span").innerHTML = "tutorial";
@@ -120,8 +135,9 @@ $(document).ready(function() {
             markedBox.setAttribute("data-marked", "true");
         }
 
+        // makes the next button in the tutorial visible
         document.querySelector(".rules").style.visibility = "visible";
-
+        // set up numbered hints
         document.querySelector("#rh13>p").innerHTML = "1";
         document.querySelector("#rh12>p").innerHTML = "1";
         document.querySelector("#rh23>p").innerHTML = "0";
@@ -141,7 +157,7 @@ $(document).ready(function() {
 
     }
 
-    // initialize tutorial
+    // This sets up the level one
     function levelOne() {
 
         document.querySelector(".level>span").innerHTML = "level 1";
@@ -152,7 +168,7 @@ $(document).ready(function() {
             markedBox = document.getElementById(selectedBoxes[i]);
             markedBox.setAttribute("data-marked", "true");
         }
-
+        // set up numbered hints
         document.querySelector("#rh13>p").innerHTML = "2";
         document.querySelector("#rh12>p").innerHTML = "2";
         document.querySelector("#rh23>p").innerHTML = "1";
@@ -174,7 +190,7 @@ $(document).ready(function() {
 
     }
 
-    // initialize tutorial
+    // This sets up the level two
     function levelTwo() {
 
         document.querySelector(".level>span").innerHTML = "level 2";
@@ -185,7 +201,7 @@ $(document).ready(function() {
             markedBox = document.getElementById(selectedBoxes[i]);
             markedBox.setAttribute("data-marked", "true");
         }
-
+        // set up numbered hints
         document.querySelector("#rh13>p").innerHTML = "2";
         document.querySelector("#rh23>p").innerHTML = "3";
         document.querySelector("#rh33>p").innerHTML = "0";
@@ -202,28 +218,31 @@ $(document).ready(function() {
         document.querySelector("#ch25>p").innerHTML = "1";
 
     }
-    // checks to see that puzzle is complete
-    // if it is complete, display success and enable level button
+
+    /**
+     * Checks to see if the puzzle is complete.
+     * If it is complete, enable the next level button.
+     */
     function gridComplete() {
-
+        // collect all marked and unmarked boxes
         markedBoxes = document.querySelectorAll('[data-marked="true"]'),
-            unmarkedBoxes = document.querySelectorAll('[data-marked="false"]'),
-            success = false;
-
+        unmarkedBoxes = document.querySelectorAll('[data-marked="false"]'),
+        success = false;
+        // if every marked box has a class red, then return true
         markedPass = Array.prototype.every.call(markedBoxes, function(el) {
             return (el.className.includes("red") == true);
         });
-
+        // if every unmarked box does not have a class red, then return true
         unmarkedPass = Array.prototype.every.call(unmarkedBoxes, function(el) {
             return (el.className.includes("red") == false);
         });
-
+        // if both functions above return true, the puzzle is complete
         if (markedPass && unmarkedPass) {
             success = true;
             $(".levelBtn").addClass("complete");
             document.querySelector(".levelBtn").disabled = false;
         }
-
+        // else it is false
         if (success == false) {
             $(".levelBtn").removeClass("complete");
             document.querySelector(".levelBtn").disabled = true;
@@ -231,7 +250,9 @@ $(document).ready(function() {
 
     }
 
-    // clears grid for next level and disables next level button
+    /**
+     * Clears the entire grid for the next level
+     */
     function clearGrid() {
 
         selectedBoxes = document.querySelectorAll(".box");
@@ -246,6 +267,8 @@ $(document).ready(function() {
             el.innerHTML = "";
         });
 
+        document.querySelector(".previous").style.visibility = "hidden";
+        document.querySelector(".next").style.visibility = "hidden";
         document.querySelector(".rules").style.visibility = "hidden";
         document.querySelector(".level>span").innerHTML = "";
         $(".levelBtn").removeClass("complete");

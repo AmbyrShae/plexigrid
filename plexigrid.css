@@ -54,12 +54,12 @@ body {
   min-height: 510px;
   max-height: 510px;
   border: medium solid #000;
-  margin: 5px 0;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   align-content: flex-start;
   align-self: center;
+  margin-right: 40px;
 }
 
 .box {
@@ -98,8 +98,7 @@ body {
   background-color: #fff;
   width: 72px;
   height: 34px;
-  margin: 5px;
-  float: right;
+  margin-left: 50px;
 }
 
 .level {
@@ -136,4 +135,8 @@ body {
 .complete {
   background-color: #66E18A !important;
   color: #fff;
+}
+
+.previous {
+  visibility: hidden;
 }
